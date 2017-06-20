@@ -1,0 +1,74 @@
+<div class="container">
+	<form name="loginForm" novalidate="novalidate"
+		class="padding-form col-xs-12 col-sm-12 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
+		<h1 class="text-center">Login</h1>
+		<div class="thumbnail">
+			<div class="padding-jumb">
+				<div class="alert alert-success alert-dismissible word-breaking"
+					role="alert" ng-show="showSuccessMsg">
+					<button type="button" class="close" ng-click="hidePopup()">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<span class="glyphicon glyphicon-exclamation-sign"
+						aria-hidden="true"></span> <span class="sr-only"></span> <strong>Well
+						done!</strong> You have successfully logged in.
+				</div>
+				<div class="alert alert-danger alert-dismissible word-breaking"
+					role="alert" ng-show="showErrorMsg">
+					<button type="button" class="close" ng-click="hidePopup()">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<span class="glyphicon glyphicon-exclamation-sign"
+						aria-hidden="true"></span> <span class="sr-only">Error:</span> <span
+						ng-bind="errorMsg"></span>
+				</div>
+				<div class="form-group">
+					<label class="control-label" for="email">Email Address <span
+						class="red-imp">*</span> :
+					</label>
+					<div class="input-group"
+						ng-class="{'has-error' : loginForm.email.$touched && loginForm.email.$invalid
+						 && !loginForm.email.$focused, 'has-success' : loginForm.email.$touched && 
+						 loginForm.email.$valid}">
+						<span class="input-group-addon"><i class="fa fa-envelope"
+							aria-hidden="true"></i></span> <input type="text" name="email"
+							id="emailTxt" autocomplete="off" required="required"
+							title="Email Address" placeholder="Enter your email address"
+							class="form-control" ng-model="emailAddress" ng-required="true"
+							ng-pattern="EMAIL_REGEXP">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label" for="password">Password <span
+						class="red-imp">*</span> :
+					</label>
+					<div class="input-group"
+						ng-class="{'has-error' : loginForm.password.$touched && loginForm.password.$invalid
+						 && !loginForm.password.$focused, 'has-success' : loginForm.password.$touched && 
+						 loginForm.password.$valid}">
+						<span class="input-group-addon"><i class="fa fa-key"
+							aria-hidden="true"></i></span> <input type="{{inputType}}"
+							name="password" id="passTxt" autocomplete="off"
+							required="required" title="Password"
+							placeholder="Enter your password" class="form-control"
+							ng-model="password" ng-required="true" ng-minlength="8"
+							ng-maxlength="20"><span class="input-group-addon"><i
+							class="{{eyeClass}}" aria-hidden="true"
+							ng-click="hideShowPassword()"></i> </span>
+					</div>
+				</div>
+				<div class="text-center">
+					<button type="submit" name="loginSubmit" id="loginBtn"
+						title="Login" value="Login" class="btn btn-primary"
+						ng-disabled="loginForm.$invalid" ng-click="loginRegisteredUser()">
+						<i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;Login
+					</button>
+				</div>
+				<hr>
+				<p class="text-center">
+					If you don't have account, Click <a href="#signup">signup</a>
+				</p>
+			</div>
+		</div>
+	</form>
+</div>

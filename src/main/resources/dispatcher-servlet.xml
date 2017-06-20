@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+	http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<!-- Common Application Properties -->
+	<context:component-scan base-package="com.sureshatcode.loptracker" />
+	<jpa:repositories base-package="com.sureshatcode.loptracker.repository" />
+
+	<mvc:resources location="/resources/**" mapping="/resources/" />
+	<mvc:annotation-driven />
+
+	<mvc:default-servlet-handler />
+
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath:app-config.properties</value>
+		</property>
+	</bean>
+
+	<!-- JDBC Properties -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${db-driverclassname}" />
+		<property name="url" value="${db-instance}" />
+		<property name="username" value="${db-username}" />
+		<property name="password" value="${db-password}" />
+	</bean>
+
+	<!-- Spring Data JPA Properties -->
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="packagesToScan" value="com.sureshatcode.loptracker.model"></property>
+		<property name="dataSource" ref="dataSource" />
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.dialect">${db-hibernate-dialect}</prop>
+				<prop key="hibernate.show_sql">${db-hibernate-showsql}</prop>
+				<prop key="hibernate.hbm2ddl.auto">${db-hibernate-hbm2ddl}</prop>
+			</props>
+		</property>
+		<property name="persistenceProvider">
+			<bean class="org.hibernate.jpa.HibernatePersistenceProvider" />
+		</property>
+	</bean>
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<bean class="org.springframework.orm.jpa.JpaTransactionManager"
+		id="transactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
+		<property name="prefix"> <value>/app/views/</value> </property> <property 
+		name="suffix"> <value>.html</value> </property> </bean> -->
+</beans>

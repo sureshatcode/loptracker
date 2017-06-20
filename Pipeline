@@ -1,0 +1,10 @@
+node {
+    timeout(45) {
+        stage('Checkout') {
+            git branch: 'master', changelog: false, credentialsId: 'sureshatcode', poll: false,
+                    url: ''
+        }
+        stage 'Build'
+            sh './gradlew build'
+    }
+}

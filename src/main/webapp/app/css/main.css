@@ -1,0 +1,28 @@
+.app-style {
+	background-color: #f9f9f9;
+	/* font-family: 'Roboto', sans-serif !important; */
+	/* font-family: 'Lato', sans-serif !important; */
+	/* font-family: 'Questrial', sans-serif !important; */
+	font-family: 'Catamaran', sans-serif !important;
+}
+
+.red-imp {
+	color: red;
+}
+
+.padding-jumb {
+	padding: 15px;
+}
+
+.padding-form {
+	padding: 0px !important;
+}
+
+.word-breaking {
+	width: auto;
+	word-wrap: break-word;
+}
+
+.margin-none {
+	margin: 0px;
+}

@@ -1,0 +1,194 @@
+<div class="container">
+	<form name="signupForm" novalidate="novalidate"
+		class="padding-form col-xs-12 col-sm-12 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
+		<h1 class="text-center">Signup</h1>
+		<div class="thumbnail">
+			<div class="padding-jumb">
+				<div class="alert alert-success alert-dismissible word-breaking"
+					role="alert" ng-show="showSuccessMsg">
+					<button type="button" class="close" ng-click="hidePopup()">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<span class="glyphicon glyphicon-exclamation-sign"
+						aria-hidden="true"></span> <span class="sr-only"></span> <strong>Well
+						done!</strong> You have successfully signed up.
+				</div>
+				<div class="alert alert-danger alert-dismissible word-breaking"
+					role="alert" ng-show="showErrorMsg">
+					<button type="button" class="close" ng-click="hidePopup()">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<span class="glyphicon glyphicon-exclamation-sign"
+						aria-hidden="true"></span> <span class="sr-only">Error:</span> <span
+						ng-bind="errorMsg"></span>
+				</div>
+				<div ng-hide="signupSuccess">
+					<div class="form-group">
+						<label class="control-label" for="firstname">First Name <span
+							class="red-imp">*</span> :
+						</label>
+						<div class="input-group"
+							ng-class="{'has-error' : signupForm.firstname.$touched && signupForm.firstname.$invalid
+						 && !signupForm.firstname.$focused, 'has-success' : signupForm.firstname.$touched &&
+						  signupForm.firstname.$valid}">
+							<span class="input-group-addon"><i class="fa fa-user"
+								aria-hidden="true"></i></span> <input type="text" name="firstname"
+								id="fnameTxt" autocomplete="off" required="required"
+								title="First Name" placeholder="Enter your first name"
+								class="form-control" ng-model="firstName" ng-required="true">
+						</div>
+						<div class="app-err" ng-messages="signupForm.firstname.$error"
+							ng-if="signupForm.firstname.$touched && !signupForm.firstname.$focused">
+							<span class="red-imp" ng-message="required">First name is
+								required</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="lastname">Last Name <span
+							class="red-imp">*</span> :
+						</label>
+						<div class="input-group"
+							ng-class="{'has-error' : signupForm.lastname.$touched && signupForm.lastname.$invalid
+						 && !signupForm.lastname.$focused, 'has-success' : signupForm.lastname.$touched && 
+						 signupForm.lastname.$valid}">
+							<span class="input-group-addon"><i class="fa fa-user"
+								aria-hidden="true"></i></span> <input type="text" name="lastname"
+								id="lnameTxt" autocomplete="off" required="required"
+								title="Last Name" placeholder="Enter your last name"
+								class="form-control" ng-model="lastName" ng-required="true">
+						</div>
+						<div class="app-err" ng-messages="signupForm.lastname.$error"
+							ng-if="signupForm.lastname.$touched && !signupForm.lastname.$focused">
+							<span class="red-imp" ng-message="required">Last name is
+								required</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="emailaddress">Email
+							Address <span class="red-imp">*</span> :
+						</label>
+						<div class="input-group"
+							ng-class="{'has-error' : signupForm.emailaddress.$touched && signupForm.emailaddress.$invalid
+						 && !signupForm.emailaddress.$focused, 'has-success' : signupForm.emailaddress.$touched && 
+						 signupForm.emailaddress.$valid}">
+							<span class="input-group-addon"><i class="fa fa-envelope"
+								aria-hidden="true"></i></span> <input type="text" name="emailaddress"
+								id="emailTxt" autocomplete="off" required="required"
+								title="Email Address" placeholder="Enter your email address"
+								class="form-control" ng-model="emailAddress" ng-required="true"
+								ng-pattern="EMAIL_REGEXP">
+						</div>
+						<div class="app-err" ng-messages="signupForm.emailaddress.$error"
+							ng-if="signupForm.emailaddress.$touched && !signupForm.emailaddress.$focused">
+							<span class="red-imp" ng-message="required">Email address
+								is required</span> <span class="red-imp" ng-message="pattern">Enter
+								a valid email address</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="mobileno">Mobile Number
+							<span class="red-imp">*</span> :
+						</label>
+						<div class="input-group"
+							ng-class="{'has-error' : signupForm.mobileno.$touched && signupForm.mobileno.$invalid
+						 && !signupForm.mobileno.$focused, 'has-success' : signupForm.mobileno.$touched && 
+						 signupForm.mobileno.$valid}">
+							<span class="input-group-addon"><i class="fa fa-phone"
+								aria-hidden="true"></i></span> <input type="tel" name="mobileno"
+								id="mobileTxt" autocomplete="off" required="required"
+								maxlength="11" title="Mobile Number"
+								placeholder="Enter your mobile number" class="form-control"
+								ng-model="mobileNumber" ng-required="true" ng-minlength="10"
+								ng-maxlength="10" ng-pattern="MOBILE_REGEXP">
+						</div>
+						<div class="app-err" ng-messages="signupForm.mobileno.$error"
+							ng-if="signupForm.mobileno.$touched && !signupForm.mobileno.$focused">
+							<span class="red-imp" ng-message="required">Mobile number
+								is required</span> <span class="red-imp" ng-message="pattern">Enter
+								a valid mobile number</span><span class="red-imp"
+								ng-message="minlength">Mobile number should be in 10
+								digits</span><span class="red-imp" ng-message="maxlength">Mobile
+								number should be in 10 digits</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="password">Password <span
+							class="red-imp">*</span> :
+						</label>
+						<div class="input-group"
+							ng-class="{'has-error' : signupForm.password.$touched && signupForm.password.$invalid
+						 && !signupForm.password.$focused || (password != undefined && confirmPassword != undefined 
+						 && password != confirmPassword), 'has-success' : signupForm.password.$touched && 
+						 signupForm.password.$valid}">
+							<span class="input-group-addon"><i class="fa fa-key"
+								aria-hidden="true"></i></span> <input type="{{inputType}}"
+								name="password" id="passTxt" autocomplete="off"
+								required="required" title="Password" maxlength="21"
+								placeholder="Enter your password" class="form-control"
+								ng-model="password" ng-required="true" ng-minlength="8"
+								ng-maxlength="20"><span class="input-group-addon"><i
+								class="{{eyeClass}}" aria-hidden="true"
+								ng-click="hideShowPassword()"></i> </span>
+						</div>
+						<div class="app-err" ng-messages="signupForm.password.$error"
+							ng-if="signupForm.password.$touched && !signupForm.password.$focused">
+							<span class="red-imp" ng-message="required">Password is
+								required</span> <span class="red-imp" ng-message="minlength">Password
+								will be more than 7 characters </span><span class="red-imp"
+								ng-message="maxlength">Password should be in 10
+								characters</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="confirmpassword">Confirm
+							Password <span class="red-imp">*</span> :
+						</label>
+						<div class="input-group"
+							ng-class="{'has-error' : signupForm.confirmpassword.$touched && signupForm.confirmpassword.$invalid
+						 && !signupForm.confirmpassword.$focused || (password != undefined && confirmPassword != undefined 
+						 && password != confirmPassword), 'has-success' : signupForm.confirmpassword.$touched && 
+						 signupForm.confirmpassword.$valid}">
+							<span class="input-group-addon"><i class="fa fa-key"
+								aria-hidden="true"></i></span> <input type="{{confInputType}}"
+								name="confirmpassword" id="confPassTxt" autocomplete="off"
+								required="required" title="Confirm Password"
+								placeholder="Enter your confirm password" maxlength="21"
+								class="form-control" ng-model="confirmPassword"
+								ng-required="true" ng-minlength="8" ng-maxlength="20"><span
+								class="input-group-addon"><i class="{{confEyeClass}}"
+								aria-hidden="true" ng-click="hideShowConfPassword()"></i> </span>
+						</div>
+						<div ng-messages="signupForm.confirmpassword.$error"
+							ng-if="signupForm.confirmpassword.$touched && !signupForm.confirmpassword.$focused">
+							<span class="red-imp" ng-message="required">Confirm
+								password is required</span> <span class="red-imp"
+								ng-message="minlength">Confirm password will be more than
+								7 characters </span><span class="red-imp" ng-message="maxlength">Confirm
+								password should be in 10 characters</span> <span class="red-imp"
+								ng-if="password != undefined && confirmPassword != undefined && password 
+							!= confirmPassword">Password's
+								are mismatch</span>
+						</div>
+					</div>
+					<div class="text-center">
+						<button type="submit" name="signupSubmit" id="signupBtn"
+							title="Signup" value="Signup" class="btn btn-primary"
+							ng-disabled="signupForm.$invalid || password != confirmPassword"
+							ng-click="registerNewUser()">
+							<i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;Signup
+						</button>
+					</div>
+					<hr>
+					<p class="text-center">
+						Already, If you have account. Click <a href="#login">login</a>
+					</p>
+				</div>
+				<div ng-show="signupSuccess">
+					<p class="text-center margin-none">
+						Go to <a href="#login">login</a> and login with your credentials
+					</p>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
