@@ -49,7 +49,7 @@ app.controller('LoginController', [ '$log', '$location', '$rootScope', '$scope',
 					$scope.showErrorMsg = false;
 				}
 				$scope.showSuccessMsg = true;
-				Storage.set("user", response.data);
+				Storage.setAll("user", response.data);
 				$timeout(function() {
 					$location.path('/dashboard');
 				}, 2000);
@@ -64,9 +64,9 @@ app.controller('LoginController', [ '$log', '$location', '$rootScope', '$scope',
 	};
 	
 	$scope.init = function() {
-		$scope.user = Storage.get("user");
+		$scope.user = Storage.getAll("user");
 		if(null !== $scope.user) {
-			$location.path('/dashboard');
+			$rootScope.redirectToDashboard();
 		}
 		
 		$scope.showErrorMsg = false;
@@ -154,9 +154,9 @@ app.controller('SignupController', [ '$log', '$location', '$rootScope', '$scope'
 	};
 	
 	$scope.init = function() {
-		$scope.user = Storage.get("user");
+		$scope.user = Storage.getAll("user");
 		if(null !== $scope.user) {
-			$location.path('/dashboard');
+			$rootScope.redirectToDashboard();
 		}
 		
 		$scope.showErrorMsg = false;
