@@ -8,15 +8,10 @@ app.controller('DashboardController', [ '$log', '$location', '$rootScope', '$sco
 	$log.debug("Dashboard controller was initialized!");
 	
 	$scope.init = function() {
-		$scope.user = Storage.get("user");
-		if(null !== $scope.user) {
-			$location.path('/dashboard');
+		$scope.user = Storage.getAll("user");
+		if(null === $scope.user) {
+			$rootScope.redirectToLogin();
 		}
-	};
-	
-	$scope.logout = function() {
-		Storage.remove("user");
-		$location.path('/login');
 	};
 
 	$scope.init();

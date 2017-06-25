@@ -21,7 +21,7 @@ app.config([ '$routeProvider', function($routeProvider) {
 
 } ]);
 
-app.run([ '$log', '$rootScope', function($log, $rootScope) {
+app.run([ '$log', '$location', '$rootScope', function($log, $location, $rootScope) {
 	$log.debug("App started running!");
 	
 	$rootScope.EMAIL_REGEXP = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,10}|[0-9]{1,3})(\]?)$/;
@@ -31,5 +31,13 @@ app.run([ '$log', '$rootScope', function($log, $rootScope) {
 		return this.toLowerCase().replace(/(?:^|\s)[a-z]/g, function (m) {
 			return m.toUpperCase();
 		});
+	};
+	
+	$rootScope.redirectToDashboard = function() {
+		$location.path('/dashboard');
+	};
+	
+	$rootScope.redirectToLogin = function() {
+		$location.path('/login');
 	};
 } ]);

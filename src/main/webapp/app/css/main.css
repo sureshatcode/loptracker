@@ -26,3 +26,8 @@
 .margin-none {
 	margin: 0px;
 }
+
+.brand-logo {
+	width: 30px;
+	margin-top: -5px;
+}
