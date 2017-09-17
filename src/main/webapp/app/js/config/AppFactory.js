@@ -2,7 +2,8 @@
  * App Factory JS File
  */
 app.factory('AppFactory', [ '$log', '$location', '$http', function($log, $location, $http) {
-	$log.debug("App factory was initialized!");
+	
+	$log.info("App factory was initialized!");
 	
 	var appFactory = {};
 	
