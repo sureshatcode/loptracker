@@ -22,7 +22,10 @@ app.config([ '$routeProvider', function($routeProvider) {
 } ]);
 
 app.run([ '$log', '$location', '$rootScope', function($log, $location, $rootScope) {
-	$log.debug("App started running!");
+	
+	$log.info("App started running!");
+	
+	$("body").tooltip({ selector: '[data-toggle=tooltip]' });
 	
 	$rootScope.EMAIL_REGEXP = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,10}|[0-9]{1,3})(\]?)$/;
 	$rootScope.MOBILE_REGEXP = /^(0|[1-9][0-9]*)$/;

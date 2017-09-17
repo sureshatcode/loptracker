@@ -48,7 +48,7 @@ public class AuthenticationServiceImpl implements AuthenticationService, Seriali
 		try {
 			logTracker.debug("Login was called in service layer");
 			foundUser = this.authenticationDao.findUserByEmailAddress(user.getEmailAddress());
-			if (null != foundUser && user.getEmailAddress().equalsIgnoreCase(foundUser.getEmailAddress())) {
+			if (foundUser != null && user.getEmailAddress().equalsIgnoreCase(foundUser.getEmailAddress())) {
 				if (!user.getPassword().equals(foundUser.getPassword())) {
 					throw new AppDataException("Invalid credentials.");
 				} else {
