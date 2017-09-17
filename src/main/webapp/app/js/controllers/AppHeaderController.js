@@ -5,7 +5,7 @@
 app.controller('AppHeaderController', [ '$log', '$location', '$rootScope', '$scope', 'StorageFactory',
 		function($log, $location, $rootScope, $scope, Storage) {
 	
-	$log.debug("App header controller was initialized!");
+	$log.info("App header controller was initialized!");
 	
 	$scope.init = function() {
 		$scope.user = Storage.getAll("user");

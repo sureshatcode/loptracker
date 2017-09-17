@@ -1,17 +1,90 @@
-<header ng-include="'app/views/app-header.html'"></header>
+<header ng-include src="'app/views/app-header.html'"></header>
 
 <div class="container">
-	<h3>Dashboard</h3>
+	<div class="h2">
+		<span ng-bind="user | fullname"></span>&nbsp;'s Dashboard
+	</div>
 	<div class="panel panel-primary">
 		<div class="panel-heading">
-			<h3 class="panel-title">
-				App title
-				<!-- <a href="" class="pull-right"><i class="fa fa-plus"
-					aria-hidden="true"></i>&nbsp;Add a Day</a> -->
-			</h3>
+			<h3 class="dashboard-panel panel-title pull-left">Your Leaves</h3>
+			<button class="btn btn-default btn-xs pull-right" data-toggle="modal"
+				data-target="#leaveModal" title="Add a Leave">
+				<i class="fa fa-plus"></i>&nbsp;Add a Leave
+			</button>
+			<div class="clearfix"></div>
 		</div>
 		<div class="panel-body">
-			<h3>App is coming soon</h3>
+			<div class="h3">App is coming soon</div>
 		</div>
 	</div>
 </div>
+
+<div id="leaveModal" class="modal fade" tabindex="-1" role="dialog"
+	aria-labelledby="Leave Modal" data-backdrop="static"
+	data-keyboard="false">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="Add a Leave">
+					<i class="fa fa-info-circle"></i>&nbsp;Add a Leave
+				</h4>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal" name="leaveForm"
+					novalidate="novalidate">
+					<div class="form-group">
+						<label for="leaveDate" class="col-sm-4 control-label">Pick
+							a Date <span class="red-imp">*</span> :
+						</label>
+						<div class="col-sm-8">
+							<div class="input-group"
+								ng-class="{'has-error' : leaveForm.leaveDate.$touched && leaveForm.leaveDate.$invalid 
+								&& !leaveForm.leaveDate.$focused, 'has-success' : leaveForm.leaveDate.$touched 
+								&& leaveForm.leaveDate.$valid}">
+								<span class="input-group-addon"><i class="fa fa-calendar"
+									aria-hidden="true"></i></span> <input type="text"
+									class="form-control date" data-provide="datepicker"
+									id="leaveDate" name="leaveDate" placeholder="Pick a Date"
+									title="Pick a Date" autocomplete="off"
+									ng-model="pickedLeaveDate" ng-required="true" datepicker>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="leaveReason" class="col-sm-4 control-label">Reason
+							For Leave <span class="red-imp">*</span> :
+						</label>
+						<div class="col-sm-8">
+							<div class="input-group"
+								ng-class="{'has-error' : leaveForm.leaveReason.$touched && leaveForm.leaveReason.$invalid 
+								&& !leaveForm.leaveReason.$focused, 'has-success' : leaveForm.leaveReason.$touched 
+								&& leaveForm.leaveReason.$valid}">
+								<span class="input-group-addon"><i
+									class="fa fa-commenting" aria-hidden="true"></i></span>
+								<textarea class="form-control no-resize" id="leaveReason"
+									rows="3" name="leaveReason" placeholder="Reason For Leave"
+									title="Reason For Leave" autocomplete="off" required="required"
+									ng-model="reasonForLeave" ng-required="true"></textarea>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="submit" name="leaveSubmit" id="leaveBtn"
+					title="Save Leave" class="btn btn-primary"
+					ng-disabled="leaveForm.$invalid" ng-click="saveALeave()">
+					<i class="fa fa-check" aria-hidden="true"></i>&nbsp;Save Leave
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div ng-include src="'app/views/app-popup.html'"></div>
+<footer ng-include src="'app/views/app-footer.html'"></footer>

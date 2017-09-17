@@ -2,7 +2,8 @@
  * Stroage Factory JS File
  */
 app.factory('StorageFactory', [ '$log', '$location', '$http', function($log, $location, $http) {
-	$log.debug("Stroage factory was initialized!");
+	
+	$log.info("Stroage factory was initialized!");
 	
 	var storageFactory = {};
 	

@@ -5,7 +5,7 @@
 app.controller('LoginController', [ '$log', '$location', '$rootScope', '$scope', '$timeout', 'StorageFactory', 'AuthenticationService',
 		function($log, $location, $rootScope, $scope, $timeout, Storage, AuthenticationService) {
 	
-	$log.debug("Login controller was initialized!");
+	$log.info("Login controller was initialized!");
 
 	$scope.inputType = 'password';
 	$scope.eyeClass = 'fa fa-eye-slash';
